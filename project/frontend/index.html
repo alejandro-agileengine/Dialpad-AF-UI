@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="./static/css/style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="loading" class="loading" hidden>Sending messages ...</div>
+    <div class="jumbotron mn_sq">
+        <p id="messages_sent" style="font-style: oblique;  color: #b5bcc7;"></p>
+
+        <table>
+            <tr>
+                <td>
+                    <h4 style="margin-right: 1200px;">Send messages:</h4>
+                </td>
+                <td>
+                    <h4>Tom (logout)</h4>
+                </td>
+            </tr>
+        </table>
+        <div class="jumbotron sc_sq">
+            <table>
+                <tr>
+                    <td>Recipients:</td>
+                    <table>
+                        <tr>
+                            <input type="file" id="file-selector" accept=".csv" autocomplete="off">
+                        </tr>
+                        <br>
+                        <tr id="phones_length" style="font-style: oblique;  color: #b5bcc7;"></tr>
+                    </table>
+                </tr>
+                <br>
+                <tr>
+                    <td>Message:</td>
+                    <br>
+                    <textarea name="" id="message_box" style="width: 100%; height:100px; border: 3px solid #b5bcc7;"></textarea>
+
+                </tr>
+                <br>
+                <tr>
+                    <br>
+                    <td>Schedule</td>
+                    <td>
+                        <label class="switch">
+                            <input type="checkbox" id="scheduler_control">
+                            <span class="slider round"></span>
+                          </label>
+                    </td>
+                </tr>
+                <br>
+                <tr style="margin-left: 5%;">
+                    <td>Please select a date:</td>
+                    <td>
+                        <input type="date" id="input_date">
+                    </td>
+                </tr>
+                <br>
+                <br>
+                <tr>
+                    <button id="submit" style="margin-left:1500px;border: 3px solid #b5bcc7;background-color: white;">Send</button>
+                </tr>
+            </table>
+        </div>
+        <br>
+    </div>
+    <br>
+    <div id="table-container"> </div>
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="./static/js/module.js"></script>
+
+</html>
