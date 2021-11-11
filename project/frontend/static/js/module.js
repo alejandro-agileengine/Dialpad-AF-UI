@@ -41,6 +41,7 @@ function processData(data) {
 $("#submit").click(function() {
     let value = $("#file-selector")[0].value;
     let date = $("#input_date")[0].value;
+    let status = $("#scheduler_control")[0].checked;
     if ((value == "") || (date == "")) {
         alert("Add file and date")
     } else {
@@ -50,7 +51,9 @@ $("#submit").click(function() {
         $("#loading").css("background-color", "#FFF");
         $("#message_box").css("background-color", "#DEDEDE");
         $("input").css("background-color", "#DEDEDE");
-        //$("span").css("background-color", "#DEDEDE");
+        if (!(status)) {
+            $("span").css("background-color", "#DEDEDE");
+        }
         $("#calendar_icon").css("top", "55%")
         setTimeout(function() {
             $(".loading")[0].hidden = true;
@@ -60,6 +63,9 @@ $("#submit").click(function() {
             $("input").css("background-color", "#FFF");
             document.getElementById("messages_sent").innerHTML = (String($("#phones_length")[0].innerText.split(" ")[0]) + " messages sent succesfully")
             $("#calendar_icon").css("top", "57.5%");
+            if (!(status)) {
+                $("span").css("background-color", "#FFF");
+            }
 
 
         }, 4000)
@@ -76,6 +82,7 @@ $("#scheduler_control").change(function() {
             alert("Add file and date")
             $("#scheduler_control")[0].checked = false;
         } else {
+            $("span").css("background-color", "#2196F3");
             console.log("creating table")
             let table = document.createElement("table");
             table.setAttribute("class", "normal_table");
@@ -166,6 +173,7 @@ $("#scheduler_control").change(function() {
         }
 
     } else {
+        $("span").css("background-color", "#FFF");
         try {
             $(".normal_table").remove();
         } catch (error) {
