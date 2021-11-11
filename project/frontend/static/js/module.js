@@ -1,7 +1,8 @@
 const formFile = document.querySelector('#file-selector');
 formFile.addEventListener('change', getData, false);
-
+$("#input_date")[0].value = ""
 $("#scheduler_control")[0].checked = false;
+$("#message_box")[0].value = ""
 
 function getData() {
     if (!window.File || !window.FileReader || !window.FileList || !window.Blob) {
@@ -25,7 +26,8 @@ function getData() {
             let final_data = data2[0].split('\r\n');
             final_data.shift();
             final_data.pop();
-            processData(final_data)
+            processData(final_data);
+            $("#calendar_icon").css("top", "55%")
             return final_data;
         }
     }
@@ -40,7 +42,7 @@ $("#submit").click(function() {
     let value = $("#file-selector")[0].value;
     let date = $("#input_date")[0].value;
     if ((value == "") || (date == "")) {
-        alert("No file selected")
+        alert("Add file and date")
     } else {
         $("body").css("background-color", "#DEDEDE");
         $(".jumbotron").css("background-color", "#DEDEDE");
@@ -48,17 +50,16 @@ $("#submit").click(function() {
         $("#loading").css("background-color", "#FFF");
         $("#message_box").css("background-color", "#DEDEDE");
         $("input").css("background-color", "#DEDEDE");
-        $("span").css("background-color", "#DEDEDE");
+        //$("span").css("background-color", "#DEDEDE");
+        $("#calendar_icon").css("top", "55%")
         setTimeout(function() {
             $(".loading")[0].hidden = true;
             $("body").css("background-color", "#FFF");
             $(".jumbotron").css("background-color", "#FFF");
             $("#message_box").css("background-color", "#FFF");
             $("input").css("background-color", "#FFF");
-            $("span").css("background-color", "#FFF");
             document.getElementById("messages_sent").innerHTML = (String($("#phones_length")[0].innerText.split(" ")[0]) + " messages sent succesfully")
-
-
+            $("#calendar_icon").css("top", "57.5%");
 
 
         }, 4000)
@@ -72,7 +73,7 @@ $("#scheduler_control").change(function() {
         let value = $("#file-selector")[0].value;
         let date = $("#input_date")[0].value;
         if ((value == "") || (date == "")) {
-            alert("No file selected")
+            alert("Add file and date")
             $("#scheduler_control")[0].checked = false;
         } else {
             console.log("creating table")
@@ -80,7 +81,8 @@ $("#scheduler_control").change(function() {
             table.setAttribute("class", "normal_table");
             var tableBody = document.createElement('TBODY');
             table.appendChild(tableBody);
-            table.setAttribute("style", "display: flex;justify-content: center;");
+            table.setAttribute("table-layout", "fixed");
+            table.setAttribute("width", "100%");
             let headers = ["ID", "Message", "Time", "Status"];
             let date = new Date();
             let hour = date.toLocaleString('en-GB').split(",")[1];
@@ -139,6 +141,7 @@ $("#scheduler_control").change(function() {
                 th.style.padding = "12px";
                 th.style.background = "#808080";
                 th.style.color = "white";
+                th.style.width = "15px";
                 tableBody.appendChild(th);
             }
 
@@ -150,6 +153,8 @@ $("#scheduler_control").change(function() {
                     td.appendChild(document.createTextNode(tcontent3[j]));
                     td.style.border = "1px solid #ddd";
                     td.style.padding = "8px";
+                    td.setAttribute("word-break", "break-all");
+                    td.setAttribute("width", "500px");
                     tr.appendChild(td);
                 }
             }

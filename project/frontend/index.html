@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="./static/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Document</title>
 </head>
 
@@ -26,56 +27,54 @@
             </tr>
         </table>
         <div class="jumbotron sc_sq">
-            <table>
-                <tr>
-                    <td>Recipients:</td>
-                    <table>
-                        <tr>
-                            <input type="file" id="file-selector" accept=".csv" autocomplete="off">
-                        </tr>
-                        <br>
-                        <tr id="phones_length" style="font-style: oblique;  color: #b5bcc7;"></tr>
-                    </table>
-                </tr>
-                <br>
-                <tr>
-                    <td>Message:</td>
-                    <br>
-                    <textarea name="" id="message_box" style="width: 100%; height:100px; border: 3px solid #b5bcc7;"></textarea>
+            <div>
+                <p>Recipients:</p>
+                <input type="file" id="file-selector" accept=".csv" autocomplete="off">
 
-                </tr>
                 <br>
-                <tr>
-                    <br>
-                    <td>Schedule</td>
-                    <td>
-                        <label class="switch">
-                            <input type="checkbox" id="scheduler_control">
-                            <span class="slider round"></span>
-                          </label>
-                    </td>
-                </tr>
+                <div id="phones_length" style="font-style: oblique;  color: #b5bcc7;"></div>
                 <br>
-                <tr style="margin-left: 5%;">
-                    <td>Please select a date:</td>
-                    <td>
-                        <input type="date" id="input_date">
-                    </td>
-                </tr>
+            </div>
+            <div>
+                <p>Message:</p>
+                <textarea name="" id="message_box"></textarea>
+                <br>
+            </div>
+            <br>
+
+            <div>
+                <table>
+                    <tr>
+                        <td>
+                            <p style="padding-top: 9%;">Schedule</p>
+                        </td>
+                        <td style="padding-left: 5%;">
+                            <label class="switch">
+                                <input type="checkbox" id="scheduler_control">
+                                <span class="slider round"></span>
+                              </label>
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+            <div style="padding-left: 2%;">
+                Please select a date:
+                <input type="date" id="input_date"></i><i class="fa fa-calendar" id="calendar_icon"></i>
                 <br>
                 <br>
-                <tr>
-                    <button id="submit" style="margin-left:1500px;border: 3px solid #b5bcc7;background-color: white;">Send</button>
-                </tr>
-            </table>
+                <button id="submit">Send</button>
+            </div>
+            <br>
         </div>
         <br>
-    </div>
-    <br>
-    <div id="table-container"> </div>
+        <div id="table-container"> </div>
+
 
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap-filestyle.min.js">
+</script>
 <script src="./static/js/module.js"></script>
 
 </html>
