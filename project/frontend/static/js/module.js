@@ -3,8 +3,23 @@ formFile.addEventListener('change', getData, false);
 $("#input_date")[0].value = ""
 $("#scheduler_control")[0].checked = false;
 $("#message_box")[0].value = ""
+$("#filename")[0].value = ""
+$("#fakeBrowse")[0].value = "Browse file"
+
+function HandleBrowseClick() {
+    var fileinput = document.getElementById("file-selector");
+    fileinput.click();
+}
+
+function Handlechange() {
+    var fileinput = document.getElementById("file-selector");
+    var textinput = document.getElementById("filename");
+    textinput.value = fileinput.value;
+}
+
 
 function getData() {
+    console.log("test")
     if (!window.File || !window.FileReader || !window.FileList || !window.Blob) {
         console.log('The File APIs are not fully supported in this browser.');
         return;
@@ -27,7 +42,8 @@ function getData() {
             final_data.shift();
             final_data.pop();
             processData(final_data);
-            $("#calendar_icon").css("top", "55%")
+            $("#calendar_icon").css("top", "57%");
+            console.log(final_data)
             return final_data;
         }
     }
@@ -54,7 +70,7 @@ $("#submit").click(function() {
         if (!(status)) {
             $("span").css("background-color", "#DEDEDE");
         }
-        $("#calendar_icon").css("top", "55%")
+        $("#calendar_icon").css("top", "57%")
         setTimeout(function() {
             $(".loading")[0].hidden = true;
             $("body").css("background-color", "#FFF");
@@ -62,7 +78,7 @@ $("#submit").click(function() {
             $("#message_box").css("background-color", "#FFF");
             $("input").css("background-color", "#FFF");
             document.getElementById("messages_sent").innerHTML = (String($("#phones_length")[0].innerText.split(" ")[0]) + " messages sent succesfully")
-            $("#calendar_icon").css("top", "57.5%");
+            $("#calendar_icon").css("top", "59.5%");
             if (!(status)) {
                 $("span").css("background-color", "#FFF");
             }
