@@ -103,6 +103,7 @@ $("#scheduler_control").change(function() {
             let table = document.createElement("table");
             table.setAttribute("class", "normal_table");
             var tableBody = document.createElement('TBODY');
+            tableBody.setAttribute("align", "center");
             table.appendChild(tableBody);
             table.setAttribute("table-layout", "fixed");
             table.setAttribute("width", "100%");
@@ -178,6 +179,7 @@ $("#scheduler_control").change(function() {
                     td.style.padding = "8px";
                     td.setAttribute("word-break", "break-all");
                     td.setAttribute("width", "500px");
+                    td.setAttribute("align", "center");
                     tr.appendChild(td);
                 }
             }
