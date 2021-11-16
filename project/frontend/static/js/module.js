@@ -1,3 +1,4 @@
+const FINAL_DATA_ = []
 const formFile = document.querySelector('#file-selector');
 formFile.addEventListener('change', getData, false);
 $("#input_date")[0].value = ""
@@ -19,7 +20,6 @@ function Handlechange() {
 
 
 function getData() {
-    console.log("test")
     if (!window.File || !window.FileReader || !window.FileList || !window.Blob) {
         console.log('The File APIs are not fully supported in this browser.');
         return;
@@ -44,7 +44,7 @@ function getData() {
             processData(final_data);
             $("#calendar_icon").css("top", "56.8%");
             console.log(final_data)
-            return final_data;
+            FINAL_DATA_.push(final_data);
         }
     }
 }
@@ -71,6 +71,27 @@ $("#submit").click(function() {
             $("span").css("background-color", "#DEDEDE");
         }
         $("#calendar_icon").css("top", "56.8%")
+            //////////MIDDLEWARE REQUEST
+        let data = FINAL_DATA_[0];
+        data = JSON.stringify({ "data": { "numbers": data, "message": $("#message_box")[0].value, "date": $("#input_date")[0].value, "scheduled": String($("#scheduler_control")[0].checked) } });
+        console.log(data);
+        let url = "http://127.0.0.1:5000/messages"
+        $.ajax({
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            url: url,
+            data: data,
+            success: function(result) {
+                console.log(result);
+            },
+            error: function() {
+                console.log("error")
+                    //alert('error!');
+            },
+            dataType: "json"
+        });
+
+        //////////////////////////
         setTimeout(function() {
             $(".loading")[0].hidden = true;
             $("body").css("background-color", "#FFF");
@@ -186,6 +207,7 @@ $("#scheduler_control").change(function() {
             var trf = document.createElement('TR');
             tableBody.appendChild(trf);
             $("#table-container").append(table)
+            $("td")[4].width = "200px"
 
 
         }
