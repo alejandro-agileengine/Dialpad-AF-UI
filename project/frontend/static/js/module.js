@@ -1,11 +1,14 @@
 const FINAL_DATA_ = []
 const formFile = document.querySelector('#file-selector');
 formFile.addEventListener('change', getData, false);
+const formFile2 = document.querySelector('#file-selector2');
+formFile2.addEventListener('change', getData2, false);
 $("#input_date")[0].value = ""
 $("#scheduler_control")[0].checked = false;
 $("#message_box")[0].value = ""
 $("#filename")[0].value = ""
 $("#fakeBrowse")[0].value = "Browse file"
+$("#fakeBrowse2")[0].value = "Browse template file"
 
 function HandleBrowseClick() {
     var fileinput = document.getElementById("file-selector");
@@ -15,6 +18,17 @@ function HandleBrowseClick() {
 function Handlechange() {
     var fileinput = document.getElementById("file-selector");
     var textinput = document.getElementById("filename");
+    textinput.value = fileinput.value;
+}
+
+function HandleBrowseClick2() {
+    var fileinput = document.getElementById("file-selector2");
+    fileinput.click();
+}
+
+function Handlechange2() {
+    var fileinput = document.getElementById("file-selector2");
+    var textinput = document.getElementById("filename2");
     textinput.value = fileinput.value;
 }
 
@@ -42,9 +56,41 @@ function getData() {
             final_data.shift();
             final_data.pop();
             processData(final_data);
-            $("#calendar_icon").css("top", "56.8%");
+            $("#calendar_icon").css("top", "70.5%");
             console.log(final_data)
             FINAL_DATA_.push(final_data);
+        }
+    }
+}
+
+function getData2() {
+    console.log("geetdata2")
+    if (!window.File || !window.FileReader || !window.FileList || !window.Blob) {
+        console.log('The File APIs are not fully supported in this browser.');
+        return;
+    }
+
+    if (!formFile2.files) {
+        console.log("This browser doesn't seem to support the `files` property of file inputs.");
+    } else if (!formFile2.files[0]) {
+        console.log("No file selected.");
+    } else {
+        let file = formFile2.files[0];
+        let fr = new FileReader();
+        fr.onload = receivedText;
+        fr.readAsText(file);
+
+        function receivedText() {
+            let data = fr.result;
+            let final_data = data;
+            //final_data.shift();
+            //final_data.pop();
+            var final_data2 = final_data.replace('Templates', '');
+            var final_data3 = final_data2.replace('"', '');
+            var final_data4 = final_data3.replace('"', '');
+            $("#message_box")[0].value = final_data4;
+
+
         }
     }
 }
@@ -70,7 +116,7 @@ $("#submit").click(function() {
         if (!(status)) {
             $("span").css("background-color", "#DEDEDE");
         }
-        $("#calendar_icon").css("top", "56.8%")
+        $("#calendar_icon").css("top", "70.5%")
             //////////MIDDLEWARE REQUEST
         let data = FINAL_DATA_[0];
         data = JSON.stringify({ "data": { "numbers": data, "message": $("#message_box")[0].value, "date": $("#input_date")[0].value, "scheduled": String($("#scheduler_control")[0].checked) } });
@@ -99,7 +145,7 @@ $("#submit").click(function() {
             $("#message_box").css("background-color", "#FFF");
             $("input").css("background-color", "#FFF");
             document.getElementById("messages_sent").innerHTML = (String($("#phones_length")[0].innerText.split(" ")[0]) + " messages sent succesfully")
-            $("#calendar_icon").css("top", "59.2%");
+            $("#calendar_icon").css("top", "72.9%");
             if (!(status)) {
                 $("span").css("background-color", "#FFF");
             }
@@ -129,10 +175,12 @@ $("#scheduler_control").change(function() {
             table.setAttribute("table-layout", "fixed");
             table.setAttribute("width", "100%");
             let headers = ["ID", "Message", "Time", "Status"];
-            let date = new Date();
-            let hour = date.toLocaleString('en-GB').split(",")[1];
-            let final_hour = hour.split(":")[0] + ":" + hour.split(":")[1]
-            let final_date_hour = $("#input_date")[0].value + final_hour;
+            // let date = new Date();
+            // let hour = date.toLocaleString('en-GB').split(",")[1];
+            // let final_hour = hour.split(":")[0] + ":" + hour.split(":")[1]
+            // let final_date_hour = $("#input_date")[0].value + final_hour;
+            let date = $("#input_date").val()
+            let final_date_hour = date.substring(0, 10) + " " + date.substring(11, 16);
             let tcontent3 = ["1", String($("#message_box")[0].value), String(final_date_hour), "Pending"];
             // let tcontent2 = [];
             // const formFile = document.querySelector('#file-selector');

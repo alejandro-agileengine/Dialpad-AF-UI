@@ -46,6 +46,16 @@
             <br>
 
             <div>
+                <div>
+                    <p>Upload Template:</p>
+                    <div>
+                        <input type="file" id="file-selector2" name="fileupload" style="display: none" onChange="Handlechange2();" accept=".csv" autocomplete="off" />
+                        <input type="text" id="filename2" readonly="true" autocomplete="off" />
+                        <input type="button" value="Click to select file" id="fakeBrowse2" onclick="HandleBrowseClick2();" />
+                    </div>
+                    <br>
+                    <br>
+                </div>
                 <table>
                     <tr>
                         <td>
@@ -62,8 +72,8 @@
 
             </div>
             <div style="padding-left: 2%;">
-                Please select a date:
-                <input type="date" id="input_date"></i><i class="fa fa-calendar" id="calendar_icon"></i>
+                Please select a date & time:
+                <input input type="datetime-local" id="input_date"></i><i class="fa fa-calendar" id="calendar_icon"></i>
                 <br>
                 <br>
                 <button id="submit">Send</button>
